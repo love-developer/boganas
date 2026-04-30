@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Noto_Kufi_Arabic } from 'next/font/google'
 import { IoCallOutline, IoChevronDown, IoLogoWhatsapp, IoTimeOutline } from 'react-icons/io5'
 import { RiMoneyDollarCircleLine } from 'react-icons/ri'
-import { BsThreeDotsVertical } from 'react-icons/bs'
 
 const notoKufiArabic = Noto_Kufi_Arabic({
   subsets: ['arabic'],
@@ -97,7 +96,6 @@ const featuredCards = [
 
 const page = () => {
   const [activePurpose, setActivePurpose] = useState('rent')
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <div className="min-h-screen">
@@ -118,14 +116,6 @@ const page = () => {
             </div>
 
             <div className="flex justify-end">
-              <button
-                type="button"
-                aria-label="Open mobile menu"
-                onClick={() => setMobileMenuOpen(true)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-md text-[#2d2423] hover:bg-gray-100"
-              >
-                <BsThreeDotsVertical size={20} />
-              </button>
             </div>
           </div>
         </nav>
@@ -216,44 +206,6 @@ const page = () => {
         </nav>
       </div>
 
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[80] lg:hidden" dir="rtl">
-          <button
-            type="button"
-            aria-label="Close mobile menu overlay"
-            onClick={() => setMobileMenuOpen(false)}
-            className="absolute inset-0 bg-black/40"
-          />
-
-          <aside className="absolute left-0 top-0 h-full w-[80%] max-w-[320px] bg-white p-5 shadow-2xl">
-            <div className="mb-5 flex items-center justify-between">
-              <img src="/logo.png" alt="Boganas Logo" className="h-12 w-auto" />
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-md px-3 py-1 text-sm font-semibold text-[#2d2423] hover:bg-gray-100"
-              >
-                إغلاق
-              </button>
-            </div>
-
-            <div className="space-y-1 text-[16px] font-semibold text-[#2d2423]">
-              <a href="/" onClick={() => setMobileMenuOpen(false)} className="block rounded-md px-3 py-2 hover:bg-gray-100">
-                الرئيسية
-              </a>
-              <a href="/offices" onClick={() => setMobileMenuOpen(false)} className="block rounded-md px-3 py-2 hover:bg-gray-100">
-                المكاتب
-              </a>
-              <a href="/plans" onClick={() => setMobileMenuOpen(false)} className="block rounded-md px-3 py-2 hover:bg-gray-100">
-                الخطط
-              </a>
-              <a href="/account" onClick={() => setMobileMenuOpen(false)} className="block rounded-md px-3 py-2 hover:bg-gray-100">
-                الحساب
-              </a>
-            </div>
-          </aside>
-        </div>
-      )}
 
 
       {/* main home */}
@@ -264,6 +216,7 @@ const page = () => {
           background: 'linear-gradient(90deg, #ffd52ba9 39%, rgba(246, 245, 245, 0.37) 39%)',
         }}
       >
+        <img src="/logo.png" alt="" className='md:hidden w-[200px]' />
         <div className="mx-auto flex max-w-5xl flex-col items-center px-4 text-center mb-10">
           <div className='py-[24px] '>
             <h2
@@ -290,10 +243,9 @@ const page = () => {
                   defaultValue=""
                   style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                 >
-                  <option value="" disabled>
-                    اختر المناطق
-                  </option>
+                  <option value="" disabled selected className="text-gray-400 hidden">اختر المناطق</option>
                   {/* محافظة حولي - مناطق */}
+                  <option value="محافظة حولي" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة حولي</option>
                   <option value="السالمية">السالمية</option>
                   <option value="الرميثية">الرميثية</option>
                   <option value="السلام">السلام</option>
@@ -313,7 +265,7 @@ const page = () => {
                   <option value="الشعب البحري">الشعب البحري</option>
 
                   {/* محافظة مبارك الكبير */}
-                  <option value="محافظة مبارك الكبير">محافظة مبارك الكبير</option>
+                  <option value="محافظة حولي" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة مبارك الكبير</option>
                   <option value="ابو فطيرة">ابو فطيرة</option>
                   <option value="الفنيطيس">الفنيطيس</option>
                   <option value="المسايل">المسايل</option>
@@ -328,7 +280,7 @@ const page = () => {
                   <option value="اسواق القرين - غرب ابو فطيره الحريفية">اسواق القرين - غرب ابو فطيره الحريفية</option>
 
                   {/* محافظة العاصمة - مناطق */}
-                  <option value="محافظة العاصمة">محافظة العاصمة</option>
+                  <option value="محافظة العاصمة" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة العاصمة</option>
                   <option value="القرين">القرين</option>
                   <option value="جابر الاحمد">جابر الاحمد</option>
                   <option value="السرة">السرة</option>
@@ -365,7 +317,7 @@ const page = () => {
                   <option value="الشرق">الشرق</option>
 
                   {/* محافظة الاحمدي - مناطق */}
-                  <option value="محافظة الاحمدي">محافظة الاحمدي</option>
+                  <option value="محافظة الاحمدي" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة الاحمدي</option>
                   <option value="صباح الاحمد السكنية">صباح الاحمد السكنية</option>
                   <option value="العقيلة">العقيلة</option>
                   <option value="الصباحية">الصباحية</option>
@@ -399,11 +351,11 @@ const page = () => {
                   <option value="الخيران السكنية - جانب البرى">الخيران السكنية - جانب البرى</option>
                   <option value="الضباعية">الضباعية</option>
                   <option value="شرق الرقة">شرق الرقة</option>
-                  <option value="محافظة الأحمدي">محافظة الأحمدي</option>
+                  <option value="محافظة الأحمدي" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة الأحمدي</option>
                   <option value="ساحل صباح الأحمد – الخيران">ساحل صباح الأحمد – الخيران</option>
 
                   {/* محافظة الفروانية */}
-                  <option value="محافظة الفروانية">محافظة الفروانية</option>
+                  <option value="محافظة الفروانية" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة الفروانية</option>
                   <option value="الفروانية">الفروانية</option>
                   <option value="جنوب عبدالله المبارك">جنوب عبدالله المبارك</option>
                   <option value="غرب عبدالله المبارك">غرب عبدالله المبارك</option>
@@ -428,7 +380,7 @@ const page = () => {
                   <option value="جليب الشيوخ - الحساوي">جليب الشيوخ - الحساوي</option>
 
                   {/* محافظة الجهراء */}
-                  <option value="محافظة الجهراء">محافظة الجهراء</option>
+                  <option value="محافظة الجهراء" disabled className='px-4  py-2 text-xs font-bold text-gray-400 uppercase tracking-wider bg-gray-50/50 top-0 z-10 text-right'>محافظة الجهراء</option>
                   <option value="المطلاع">المطلاع</option>
                   <option value="سعد العبدالله">سعد العبدالله</option>
                   <option value="الجهراء القديمة">الجهراء القديمة</option>
@@ -471,20 +423,20 @@ const page = () => {
               <div className="relative mb-3">
                 <select
                   id="property-type"
-                  defaultValue="all"
+                  defaultValue=""
                   className="min-h-[48px] py-[8px] px-[16px] w-full rounded-full border border-[#e2e2e2] bg-white px-4 text-right text-[14px] text-[#4f4f4f] outline-none appearance-none"
                   style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                 >
-                  <option value="all">جميع أنواع العقارات</option>
+                  <option value="" disabled selected className="text-gray-400 hidden">جميع أنواع العقارات</option>
                   <option value="floor">شقة</option>
                   <option value="floor">دور</option>
-                  <option value="house">پیه</option>
-                  <option value="duplex">دوینگکس</option>
+                  <option value="house">بيت</option>
+                  <option value="duplex">دوبلكس</option>
                   <option value="land">ارض</option>
-                  <option value="building">عماره</option>
-                  <option value="chalet">شاپله</option>
-                  <option value="farm">مزارعه</option>
-                  <option value="commercial">تجاری</option>
+                  <option value="building">عمارة</option>
+                  <option value="chalet">شاليه</option>
+                  <option value="farm">مزرعة</option>
+                  <option value="commercial">تجاري</option>
                   <option value="storage">مخزن</option>
                 </select>
                 <IoChevronDown className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#8f8f8f]" size={18} />
@@ -559,7 +511,7 @@ const page = () => {
                       PUT YOUR AD HERE
                     </h3>
                     <p className="text-[18px] md:text-[24px] leading-[1.35] font-semibold text-[#fff4c2]">
-                      +965 9007 8005
+                      8005 9007 965+
                     </p>
                   </div>
 
@@ -593,7 +545,7 @@ const page = () => {
 
       </section>
 
-      <section className={`${notoKufiArabic.className} pt-[250px] px-4 w-full pb-20`} dir="rtl">
+      <section className={`${notoKufiArabic.className} pt-[200px] md:pt-[250px] px-4 w-full pb-20`} dir="rtl">
         <div className="mx-auto max-w-4xl">
           <div className="mb-4">
             <h2 className="text-center text-[28px] font-bold text-[#06152d] md:text-[32px]">أحدث الإعلانات</h2>
